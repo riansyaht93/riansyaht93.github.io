@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>HTML DOM Events</h1>
+<h2>The onkeypress Event</h2>
+
+<p>A function is triggered when the user is pressing a key in the input field.</p>
+
+<input type="text" onkeypress="inputHandler()" id="masukan">
+<p>hasil: <span id="output"></span></p>
+
+
+<script>
+function inputHandler() {
+    let masukan = document.getElementById("masukan").value;
+    document.getElementById("output").innerHTML = masukan;
+}
+</script>
+
+</body>
+</html>

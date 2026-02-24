@@ -3,173 +3,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rian Syaht - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio - Tema Hijau</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e9 100%);
+            color: #2d5016;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d7a3a 0%, #1b4d2a 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(45, 122, 58, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(45, 122, 58, 0.15);
+            border-left: 5px solid #4caf50;
+        }
+
+        h2 {
+            color: #2d7a3a;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d5016;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #a5d6a7;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #2d5016;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #2d7a3a;
+            box-shadow: 0 0 10px rgba(45, 122, 58, 0.3);
+            background-color: #f1f8f1;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #4caf50 0%, #2d7a3a 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 122, 58, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #81c784 0%, #4caf50 100%);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #c8e6c9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f8f1;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fff8;
+        }
+
+        .dataTables_wrapper {
+            margin-top: 1rem;
+        }
+
+        .gif-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gif-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f1 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(45, 122, 58, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gif-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(45, 122, 58, 0.3);
+        }
+
+        .gif-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gif-label {
+            padding: 1rem;
+            text-align: center;
+            color: #2d7a3a;
+            font-weight: 600;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4caf50;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(45, 122, 58, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
+
+        .success-message {
+            background: #c8e6c9;
+            color: #1b5e20;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #4caf50 0%, #2d7a3a 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box p {
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #2d7a3a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 5px solid #4caf50;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .gif-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gif-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #4caf50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .gif-section-wrapper {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Rian Syaht</div>
-            <ul class="nav-links">
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#skills">Skill</a></li>
-                <li><a href="#contact">Kontak</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <h1>🌿 Portfolio Saya</h1>
+        <p>Selamat datang di halaman portfolio dengan tema hijau yang menyegarkan</p>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Halo, Saya Rian Syaht</h1>
-        <p>Web Developer & Creative Designer</p>
-        <div class="cta-buttons">
-            <button class="btn btn-primary">Lihat Portfolio</button>
-            <button class="btn btn-secondary" onclick="handlerSayHi">
-                Hubungi Saya
-            </button>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2>Tentang Saya</h2>
-        <p class="section-subtitle">Berkenalan lebih dekat</p>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Saya adalah seorang developer berpengalaman dengan passion untuk menciptakan solusi digital yang inovatif dan user-friendly. Dengan latar belakang dalam web development, saya telah membantu berbagai perusahaan mengembangkan aplikasi dan website yang impactful.</p>
-                <p>Saya percaya bahwa teknologi harus dapat diakses oleh semua orang dan harus membuat perbedaan positif dalam kehidupan sehari-hari.</p>
+    <div class="container">
+        <!-- Statistik Singkat -->
+        <section>
+            <h2>📊 Statistik</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>15+</h3>
+                    <p>Proyek Selesai</p>
+                </div>
+                <div class="stat-box">
+                    <h3>50+</h3>
+                    <p>Klien Puas</p>
+                </div>
+                <div class="stat-box">
+                    <h3>3+</h3>
+                    <p>Tahun Pengalaman</p>
+                </div>
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p>Dedikasi</p>
+                </div>
             </div>
-            <div class="about-text">
-                <p><strong>Pengalaman:</strong> 5+ tahun di industri teknologi</p>
-                <p><strong>Spesialisasi:</strong> Full Stack Development, UI/UX Design</p>
-                <p><strong>Lokasi:</strong> Indonesia</p>
-                <p><strong>Status:</strong> Terbuka untuk proyek dan kolaborasi baru</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <h2>Portfolio Terbaru</h2>
-        <p class="section-subtitle">Hasil karya dan proyek yang telah saya kerjakan</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="portfolio-image">🚀</div>
-                <div class="portfolio-content">
-                    <h3>Web App E-Commerce</h3>
-                    <p>Platform belanja online dengan fitur pembayaran dan inventory management</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+        <!-- Form Input Portofolio -->
+        <section>
+            <h2>📋 Tambah Proyek Baru</h2>
+            <form id="portfolioForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectName">Nama Proyek</label>
+                        <input type="text" id="projectName" name="projectName" required placeholder="Masukkan nama proyek">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectCategory">Kategori</label>
+                        <select id="projectCategory" name="projectCategory" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Mobile App">Mobile App</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="DevOps">DevOps</option>
+                        </select>
                     </div>
                 </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-image">📱</div>
-                <div class="portfolio-content">
-                    <h3>Mobile App Dashboard</h3>
-                    <p>Aplikasi dashboard untuk monitoring data real-time dengan visualisasi interaktif</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">React Native</span>
-                        <span class="tag">Redux</span>
-                        <span class="tag">Firebase</span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientName">Nama Klien</label>
+                        <input type="text" id="clientName" name="clientName" required placeholder="Nama klien">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDuration">Durasi (hari)</label>
+                        <input type="number" id="projectDuration" name="projectDuration" required placeholder="30" min="1">
                     </div>
                 </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-image">🎨</div>
-                <div class="portfolio-content">
-                    <h3>Brand Landing Page</h3>
-                    <p>Website landing page dengan design yang menarik dan performa tinggi</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">SEO</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <h2>Keahlian Saya</h2>
-        <p class="section-subtitle">Tools dan teknologi yang saya kuasai</p>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Frontend Development</h3>
-                <ul class="skill-list">
-                    <li>HTML & CSS</li>
-                    <li>JavaScript (ES6+)</li>
-                    <li>React & Vue.js</li>
-                    <li>UI/UX Design</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <h3>Backend Development</h3>
-                <ul class="skill-list">
-                    <li>Node.js & Express</li>
-                    <li>Python & Django</li>
-                    <li>PostgreSQL & MongoDB</li>
-                    <li>REST API</li>
-                </ul>
-            </div>
-
-            <div class="skill-card">
-                <h3>Tools & teknologi</h3>
-                <ul class="skill-list">
-                    <li>Git & GitHub</li>
-                    <li>Docker & Docker Compose</li>
-                    <li>AWS & Heroku</li>
-                    <li>Figma & Adobe XD</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Hubungi Saya</h2>
-        <p class="section-subtitle">Mari kita diskusikan proyek Anda</p>
-        <div class="contact-form">
-            <form>
                 <div class="form-group">
-                    <label for="name">Nama Lengkap</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="projectDescription">Deskripsi Proyek</label>
+                    <textarea id="projectDescription" name="projectDescription" required placeholder="Jelaskan detail proyek Anda..."></textarea>
                 </div>
+
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="techStack">Teknologi yang Digunakan</label>
+                    <input type="text" id="techStack" name="techStack" required placeholder="Contoh: HTML, CSS, JavaScript, React">
                 </div>
-                <div class="form-group">
-                    <label for="message">Pesan</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+
+                <button type="submit">➕ Tambahkan Proyek</button>
+                <div class="success-message" id="successMessage">✓ Proyek berhasil ditambahkan!</div>
             </form>
-        </div>
-        <div class="contact-links">
-            <a href="https://github.com/riansyaht93">GitHub</a>
-            <a href="https://linkedin.com">LinkedIn</a>
-            <a href="mailto:your@email.com">Email</a>
-            <a href="https://instagram.com">Instagram</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- DataTable Proyek -->
+        <section>
+            <h2>📁 Daftar Proyek</h2>
+            <div class="table-container">
+                <table id="projectTable" class="display">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Proyek</th>
+                            <th>Kategori</th>
+                            <th>Klien</th>
+                            <th>Durasi (Hari)</th>
+                            <th>Teknologi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td>1</td>
+                            <td>Website E-Commerce</td>
+                            <td>Web Development</td>
+                            <td>PT Maju Jaya</td>
+                            <td>45</td>
+                            <td>React, Node.js, MongoDB</td>
+                            <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Mobile App Fitness</td>
+                            <td>Mobile App</td>
+                            <td>StartUp Kesehatan</td>
+                            <td>60</td>
+                            <td>Flutter, Firebase</td>
+                            <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Dashboard Analytics</td>
+                            <td>Web Development</td>
+                            <td>PT Data Insight</td>
+                            <td>30</td>
+                            <td>Vue.js, Python, PostgreSQL</td>
+                            <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>UI/UX Design System</td>
+                            <td>UI/UX Design</td>
+                            <td>Perusahaan Tech</td>
+                            <td>25</td>
+                            <td>Figma, Adobe XD</td>
+                            <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Sistem Manajemen Inventori</td>
+                            <td>Web Development</td>
+                            <td>Toko Retail</td>
+                            <td>50</td>
+                            <td>Laravel, MySQL, Bootstrap</td>
+                            <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- GIF Gallery dengan Event Scroll -->
+        <section class="gif-section-wrapper">
+            <div class="gif-counter">Scroll untuk ubah GIF ↓</div>
+            <h2>🎬 Galeri Animasi</h2>
+            <p style="margin-bottom: 1rem; color: #666;">Scroll halaman untuk melihat perubahan animasi GIF di bawah ini</p>
+            <div class="gif-container" id="gifContainer">
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/g9GUufsyjzpoA/giphy.gif" alt="Animasi 1" class="scroll-gif">
+                    <div class="gif-label">Animasi 1</div>
+                </div>
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/3o85xIO33l7RlmLDBi/giphy.gif" alt="Animasi 2" class="scroll-gif">
+                    <div class="gif-label">Animasi 2</div>
+                </div>
+                <div class="gif-box">
+                    <img src="https://media.giphy.com/media/l0HlNaQ9GrWdA1EIU/giphy.gif" alt="Animasi 3" class="scroll-gif">
+                    <div class="gif-label">Animasi 3</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Rian Syaht. All rights reserved.</p>
+        <p>&copy; 2026 Portfolio Saya | Dikembangkan dengan ❤️ dan HTML, CSS, JavaScript</p>
     </footer>
+
+    <div class="scroll-indicator" id="scrollIndicator">📜 Terus scroll untuk lihat GIF berubah!</div>
+
     <script>
-        function handlerSayHi(){
-            alert("Hi, I'm Rian Syaht! Feel free to contact me for any project or collaboration.");
+        // DataTable Initialization
+        $(document).ready(function() {
+            $('#projectTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
+                },
+                pageLength: 5,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                info: true,
+                paging: true
+            });
+        });
+
+        // Form Submission
+        document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const projectName = document.getElementById('projectName').value;
+            const projectCategory = document.getElementById('projectCategory').value;
+            const clientName = document.getElementById('clientName').value;
+            const projectDuration = document.getElementById('projectDuration').value;
+            const techStack = document.getElementById('techStack').value;
+
+            // Get current row count
+            const table = document.getElementById('projectTable').getElementsByTagName('tbody')[0];
+            const rowCount = table.rows.length + 1;
+
+            // Create new row
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${rowCount}</td>
+                <td>${projectName}</td>
+                <td>${projectCategory}</td>
+                <td>${clientName}</td>
+                <td>${projectDuration}</td>
+                <td>${techStack}</td>
+                <td><button class="btn-delete" onclick="deleteRow(this)" style="background: #ef5350; padding: 0.5rem 1rem; font-size: 0.9rem;">Hapus</button></td>
+            `;
+
+            // Reset form
+            this.reset();
+
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+
+            // Refresh DataTable
+            $('#projectTable').DataTable().destroy();
+            $(document).ready(function() {
+                $('#projectTable').DataTable({
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json'
+                    },
+                    pageLength: 5
+                });
+            });
+        });
+
+        // Delete Row Function
+        function deleteRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            alert('Proyek berhasil dihapus!');
         }
+
+        // GIF URLs Array - Short animated GIFs
+        const gifArray = [
+            [
+                'https://media.giphy.com/media/g9GUufsyjzpoA/giphy.gif',
+                'https://media.giphy.com/media/3o85xIO33l7RlmLDBi/giphy.gif',
+                'https://media.giphy.com/media/l0HlNaQ9GrWdA1EIU/giphy.gif'
+            ],
+            [
+                'https://media.giphy.com/media/xTiTn5AyNxDmHsqBoI/giphy.gif',
+                'https://media.giphy.com/media/l0HlR90jghVzxAjTa/giphy.gif',
+                'https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif'
+            ],
+            [
+                'https://media.giphy.com/media/3o7TKw8dRTHNw4vJdm/giphy.gif',
+                'https://media.giphy.com/media/l0HlMt4yDCPX1KfgI/giphy.gif',
+                'https://media.giphy.com/media/l0HlDy9x8FZo0XO1i/giphy.gif'
+            ]
+        ];
+
+        let currentGifSet = 0;
+        let lastScrollTop = 0;
+        let scrollCounter = 0;
+
+        // Scroll Event untuk Ganti GIF
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollIndicator = document.getElementById('scrollIndicator');
+
+            // Show scroll indicator
+            if (scrollTop > 200) {
+                scrollIndicator.classList.add('visible');
+            } else {
+                scrollIndicator.classList.remove('visible');
+            }
+
+            // Change GIF setiap scroll tertentu
+            scrollCounter++;
+
+            if (scrollCounter > 5) {
+                scrollCounter = 0;
+                currentGifSet = (currentGifSet + 1) % gifArray.length;
+
+                const gifImages = document.querySelectorAll('.scroll-gif');
+                gifImages.forEach((img, index) => {
+                    // Add fade effect
+                    img.style.opacity = '0.5';
+                    setTimeout(() => {
+                        img.src = gifArray[currentGifSet][index % 3];
+                        img.style.transition = 'opacity 0.3s ease';
+                        img.style.opacity = '1';
+                    }, 150);
+                });
+
+                // Update title untuk menunjukkan perubahan
+                const gifLabels = document.querySelectorAll('.gif-label');
+                gifLabels.forEach((label, index) => {
+                    label.textContent = `Animasi ${(currentGifSet * 3 + index + 1)}`;
+                });
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 </body>
 </html>

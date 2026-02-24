@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rian Syaht - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Rian Syaht</div>
+            <ul class="nav-links">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#skills">Skill</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Halo, Saya Rian Syaht</h1>
+        <p>Web Developer & Creative Designer</p>
+        <div class="cta-buttons">
+            <button class="btn btn-primary">Lihat Portfolio</button>
+            <button class="btn btn-secondary" onclick="handlerSayHi()">
+                Hubungi Saya
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>Tentang Saya</h2>
+        <p class="section-subtitle">Berkenalan lebih dekat</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Saya adalah seorang developer berpengalaman dengan passion untuk menciptakan solusi digital yang inovatif dan user-friendly. Dengan latar belakang dalam web development, saya telah membantu berbagai perusahaan mengembangkan aplikasi dan website yang impactful.</p>
+                <p>Saya percaya bahwa teknologi harus dapat diakses oleh semua orang dan harus membuat perbedaan positif dalam kehidupan sehari-hari.</p>
+            </div>
+            <div class="about-text">
+                <p><strong>Pengalaman:</strong> 5+ tahun di industri teknologi</p>
+                <p><strong>Spesialisasi:</strong> Full Stack Development, UI/UX Design</p>
+                <p><strong>Lokasi:</strong> Indonesia</p>
+                <p><strong>Status:</strong> Terbuka untuk proyek dan kolaborasi baru</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2>Portfolio Terbaru</h2>
+        <p class="section-subtitle">Hasil karya dan proyek yang telah saya kerjakan</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-image">🚀</div>
+                <div class="portfolio-content">
+                    <h3>Web App E-Commerce</h3>
+                    <p>Platform belanja online dengan fitur pembayaran dan inventory management</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">📱</div>
+                <div class="portfolio-content">
+                    <h3>Mobile App Dashboard</h3>
+                    <p>Aplikasi dashboard untuk monitoring data real-time dengan visualisasi interaktif</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Redux</span>
+                        <span class="tag">Firebase</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">🎨</div>
+                <div class="portfolio-content">
+                    <h3>Brand Landing Page</h3>
+                    <p>Website landing page dengan design yang menarik dan performa tinggi</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">SEO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2>Keahlian Saya</h2>
+        <p class="section-subtitle">Tools dan teknologi yang saya kuasai</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend Development</h3>
+                <ul class="skill-list">
+                    <li>HTML & CSS</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React & Vue.js</li>
+                    <li>UI/UX Design</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>Backend Development</h3>
+                <ul class="skill-list">
+                    <li>Node.js & Express</li>
+                    <li>Python & Django</li>
+                    <li>PostgreSQL & MongoDB</li>
+                    <li>REST API</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>Tools & teknologi</h3>
+                <ul class="skill-list">
+                    <li>Git & GitHub</li>
+                    <li>Docker & Docker Compose</li>
+                    <li>AWS & Heroku</li>
+                    <li>Figma & Adobe XD</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Hubungi Saya</h2>
+        <p class="section-subtitle">Mari kita diskusikan proyek Anda</p>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+            </form>
+        </div>
+        <div class="contact-links">
+            <a href="https://github.com/riansyaht93">GitHub</a>
+            <a href="https://linkedin.com">LinkedIn</a>
+            <a href="mailto:your@email.com">Email</a>
+            <a href="https://instagram.com">Instagram</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rian Syaht. All rights reserved.</p>
+    </footer>
+    <script>
+        function handlerSayHi(){
+            alert("Hi, I'm Rian Syaht! Feel free to contact me for any project or collaboration.");
+        }
+    </script>
+</body>
+</html>
